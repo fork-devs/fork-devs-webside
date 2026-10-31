@@ -94,7 +94,7 @@ body {
 }
 .logo__hex {
   left: 0; top: 0; width: 240px; height: 263px; z-index: 2;
-  -webkit-mask-image: url(assets/hex.png); mask-image: url(assets/hex.png);
+  -webkit-mask-image: url(assets/brand/driveos-hex.svg); mask-image: url(assets/brand/driveos-hex.svg);
   -webkit-mask-size: 240px 263px; mask-size: 240px 263px;
 }
 .logo__letters { position: absolute; inset: 0; z-index: 1; }
@@ -116,7 +116,7 @@ body {
 .intro__logo .logo__hex { will-change: transform; transform-origin: 50% 50%; }
 .intro__logo .logo__hex::after {
   content: ""; position: absolute; inset: 0;
-  -webkit-mask-image: url(assets/hex.png); mask-image: url(assets/hex.png);
+  -webkit-mask-image: url(assets/brand/driveos-hex.svg); mask-image: url(assets/brand/driveos-hex.svg);
   -webkit-mask-size: 240px 263px; mask-size: 240px 263px;
   background: linear-gradient(105deg, transparent 36%, rgba(0, 113, 235, .34) 50%, transparent 64%);
   background-size: 260% 100%;
@@ -190,8 +190,8 @@ html.intro-on:not(.is-ready) .nav__brand { opacity: 0; }
   aspect-ratio: 240 / 263;
   background: var(--blue);
   opacity: 0.04;
-  -webkit-mask: url(assets/hex.png) center / contain no-repeat;
-  mask: url(assets/hex.png) center / contain no-repeat;
+  -webkit-mask: url(assets/brand/driveos-hex.svg) center / contain no-repeat;
+  mask: url(assets/brand/driveos-hex.svg) center / contain no-repeat;
   pointer-events: none;
   z-index: 0;
   transform-origin: center;
@@ -583,3 +583,54 @@ html:not(.js) .reveal { opacity: 1; transform: none; }
 /* Team members without a photo: initials placeholder */
 .member__ph--ini{display:grid;place-items:center;background:linear-gradient(145deg,#0071eb33,#031a6b66)}
 .member__ph--ini span{font-size:56px;font-weight:800;letter-spacing:-.04em;color:#69b1ff}
+
+/* ---- DriveOS wordmark ---- */
+.brand-mark{display:inline-flex;align-items:center;gap:9px;color:var(--ink);line-height:1}
+.brand-mark__ico{width:30px;height:30px;flex:none;color:var(--blue)}
+.brand-mark__txt{font:800 23px/1 var(--font);letter-spacing:-.045em}
+.brand-mark__txt b{color:var(--blue);font-weight:800}
+.foot .brand-mark{color:#fff}
+.foot .brand-mark__ico{color:#69b1ff}
+.foot .brand-mark__txt b{color:#69b1ff}
+
+/* ---- Glass nav pill with sliding indicator ---- */
+.nav__links{
+  gap:2px;padding:5px;border-radius:999px;
+  background:color-mix(in srgb,var(--surface) 55%,transparent);
+  -webkit-backdrop-filter:saturate(1.7) blur(18px);backdrop-filter:saturate(1.7) blur(18px);
+  border:1px solid color-mix(in srgb,var(--ink) 11%,transparent);
+  box-shadow:inset 0 1px 0 color-mix(in srgb,#fff 40%,transparent),0 8px 24px -12px #0b122052;
+}
+.nav__links a{position:relative;z-index:1;padding:8px 15px;border-radius:999px;font-size:14.5px;transition:color .25s var(--ease-out)}
+.nav__links a:hover,.nav__links a.is-active{color:var(--ink)}
+.nav__pill{
+  position:absolute;z-index:0;top:5px;left:0;height:calc(100% - 10px);width:0;border-radius:999px;pointer-events:none;
+  background:color-mix(in srgb,var(--ink) 9%,transparent);
+  border:1px solid color-mix(in srgb,var(--ink) 12%,transparent);
+  box-shadow:inset 0 1px 0 color-mix(in srgb,#fff 35%,transparent);
+  opacity:0;transform:translateX(0);
+  transition:transform .5s var(--ease-out),width .5s var(--ease-out),opacity .25s ease;
+}
+.nav__pill.is-on{opacity:1}
+.nav__pill.is-snap{transition:none}
+
+/* ---- Hero: web dashboard window instead of device frame ---- */
+.dash{
+  width:min(560px,100%);border-radius:20px;background:var(--ink);padding:0 12px 12px;
+  transform:perspective(1400px) rotateY(-9deg) rotateX(3deg) rotate(-1.5deg);
+  box-shadow:0 40px 80px -30px #0b122073,inset 0 0 0 1px #ffffff0f;
+}
+.dash__bar{display:flex;align-items:center;gap:6px;height:38px;padding:0 4px;color:#ffffff80;font-size:11px}
+.dash__bar i{width:9px;height:9px;border-radius:50%;background:#ffffff26}
+.dash__bar i:nth-child(1){background:#fb2c36aa}.dash__bar i:nth-child(2){background:#f0b100aa}.dash__bar i:nth-child(3){background:#3ac530aa}
+.dash__bar span{margin-left:12px;padding:3px 14px;border-radius:8px;background:#ffffff14}
+.dash .phone__screen{display:grid;grid-template-columns:1fr 1fr;align-content:start;gap:12px;height:auto;border-radius:12px;padding:16px}
+.dash .ps-top{grid-column:1/-1}
+.dash .ps-card--live{grid-column:1/-1}
+@media (max-width:900px){.dash{transform:none}}
+
+/* ---- dash frame fixes (dark bezel in both themes, chips outside the window) ---- */
+.dash{background:#0b1220;box-shadow:0 40px 80px -30px #0b122099,inset 0 0 0 1px #ffffff1f}
+.hero__visual .float--a{left:-46px;top:auto;bottom:-22px;right:auto}
+.hero__visual .float--b{right:-18px;top:auto;bottom:-44px;left:auto}
+@media (max-width:900px){.hero__visual .float--a{left:-8px}.hero__visual .float--b{right:-8px}}

@@ -3,22 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Atelier | El taller que se adelanta a la avería</title>
-  <meta name="description" content="Atelier Workshop: diagnóstico OBD-II, inventario FIFO y facturación SUNAT para talleres mecánicos, incluso sin señal en la fosa.">
+  <title>DriveOS | El taller que se adelanta a la avería</title>
+  <meta name="description" content="DriveOS: diagnóstico OBD-II, inventario FIFO y facturación SUNAT para talleres mecánicos, incluso sin señal en la fosa.">
   <meta name="theme-color" content="#0071eb">
   
   <!-- PWA & Favicon -->
-  <link rel="icon" type="image/svg+xml" href="assets/brand/atelier-workshop-icon.svg">
-  <link rel="apple-touch-icon" href="assets/brand/atelier-workshop-icon.png">
-  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/svg+xml" href="assets/brand/driveos-icon.svg">
+    <link rel="manifest" href="manifest.webmanifest">
 
   <!-- Open Graph & Social Cards -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Atelier | El taller que se adelanta a la avería">
+  <meta property="og:title" content="DriveOS | El taller que se adelanta a la avería">
   <meta property="og:description" content="Diagnóstico OBD-II, inventario FIFO y facturación SUNAT para talleres mecánicos en Lima, incluso sin señal en la fosa.">
   <meta property="og:image" content="assets/logo-blue-black.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Atelier | Software para Talleres Mecánicos">
+  <meta name="twitter:title" content="DriveOS | Software para Talleres Mecánicos">
   <meta name="twitter:description" content="Diagnóstico OBD-II, inventario FIFO y facturación SUNAT para talleres mecánicos.">
   <meta name="twitter:image" content="assets/logo-blue-black.png">
 
@@ -27,9 +26,9 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Atelier Workshop",
+    "name": "DriveOS",
     "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Android, Web",
+    "operatingSystem": "Web",
     "description": "Sistema de gestión integral para talleres mecánicos con diagnóstico OBD-II, inventario FIFO y facturación SUNAT.",
     "offers": {
       "@type": "AggregateOffer",
@@ -50,41 +49,22 @@
         if (matchMedia('(prefers-reduced-motion: reduce)').matches) play = false;
         if (location.search.indexOf('nointro') !== -1) play = false;
       } catch (e) {}
-      root.classList.add(play ? 'intro-on' : 'is-ready');
+      root.classList.add('is-ready');
     })();
   </script>
   <link rel="preload" href="assets/fonts/satoshi/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/vendor/phosphor/style.css">
-  <link rel="stylesheet" href="styles.css?v=13">
+  <link rel="stylesheet" href="styles.css?v=16">
 </head>
 <body>
 
-  <!-- Intro: hexágono gira, las letras salen del logo y el lockup viaja a la barra superior -->
-  <div class="intro" id="intro" aria-hidden="true">
-    <div class="intro__bg" id="introBg"></div>
-    <div class="intro__logo logo" id="introLogo" style="--k:.5">
-      <div class="logo__inner">
-        <span class="logo__hex"></span>
-        <span class="logo__letters">
-          <span class="ltr" style="--x:9;--w:128"></span>
-          <span class="ltr" style="--x:137;--w:101"></span>
-          <span class="ltr" style="--x:238;--w:128"></span>
-          <span class="ltr" style="--x:366;--w:75"></span>
-          <span class="ltr" style="--x:441;--w:75"></span>
-          <span class="ltr" style="--x:516;--w:128"></span>
-          <span class="ltr" style="--x:644;--w:116"></span>
-        </span>
-      </div>
-    </div>
-  </div>
-
   <header class="nav" id="nav">
     <div class="wrap nav__row">
-      <a class="nav__brand" href="#top" aria-label="Atelier Workshop">
-        <img src="assets/logo-blue-black.png" alt="Atelier Workshop" class="brand-logo light-only">
-        <img src="assets/logo-blue-white.png" alt="Atelier Workshop" class="brand-logo dark-only">
+      <a class="nav__brand" href="#top" aria-label="DriveOS">
+        <span class="brand-mark"><svg class="brand-mark__ico" viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M12 42a20 20 0 1 1 40 0" stroke="currentColor" stroke-width="6" stroke-linecap="round"/><path d="M32 42l9-14" stroke="#f68b01" stroke-width="6" stroke-linecap="round"/><circle cx="32" cy="42" r="5" fill="currentColor"/></svg><span class="brand-mark__txt">Drive<b>OS</b></span></span>
       </a>
-      <nav class="nav__links" aria-label="Principal">
+      <nav class="nav__links" id="navLinks" aria-label="Principal">
+        <span class="nav__pill" id="navPill" aria-hidden="true"></span>
         <a href="#producto" data-i18n="nav.product">Producto</a>
         <a href="#como" data-i18n="nav.how">Cómo funciona</a>
         <a href="#roles" data-i18n="nav.roles">Roles</a>
@@ -126,7 +106,6 @@
         <a href="#precios" class="drawer-link" data-i18n="nav.pricing">Precios</a>
         <a href="#faq" class="drawer-link" data-i18n="nav.faq">Preguntas</a>
         <a href="#equipo" class="drawer-link" data-i18n="nav.team">Equipo</a>
-        <a href="#instalar" class="drawer-link" data-i18n="nav.install">Instalar app</a>
       </nav>
       <div class="mobile-drawer__footer">
         <button class="btn btn--primary btn--block drawer-link" data-open-modal="demo" data-plan="pro" data-i18n="nav.demo">Pedir Demo</button>
@@ -140,7 +119,7 @@
     <!-- HERO -->
     <section class="hero wrap">
       <div class="hero__copy">
-        <p class="eyebrow reveal" data-hero="0"><span class="dot"></span><span data-i18n="hero.eyebrow">Atelier Workshop · talleres mecánicos de Lima</span></p>
+        <p class="eyebrow reveal" data-hero="0"><span class="dot"></span><span data-i18n="hero.eyebrow">DriveOS · talleres mecánicos de Lima</span></p>
         <h1 class="h1-stagger" data-hero="1">
           <span class="h1-line"><span data-i18n="hero.h1_1">El taller que</span></span>
           <span class="h1-line"><em class="h1-hl" data-i18n="hero.h1_2">se adelanta</em></span>
@@ -148,8 +127,8 @@
         </h1>
         <p class="lead lit-text reveal" data-hero="2" data-i18n="hero.lead">Diagnostica con cualquier escáner OBD-II, controla tus repuestos y emite comprobantes SUNAT válidos desde un solo sistema, incluso sin señal en la fosa.</p>
         <div class="hero__cta reveal" data-hero="3">
-          <a class="btn btn--primary" href="#instalar"><i class="ph ph-device-mobile"></i> <span data-i18n="hero.cta_mobile">Instalar app móvil</span></a>
-          <a class="btn btn--ghost" href="#instalar"><i class="ph ph-browser"></i> <span data-i18n="hero.cta_web">Usar versión web</span></a>
+          <button class="btn btn--primary" type="button" data-open-modal="demo" data-plan="pro"><i class="ph ph-calendar-check"></i> <span data-i18n="hero.cta_demo">Pedir Demo</span></button>
+          <a class="btn btn--ghost" href="#como"><i class="ph ph-arrow-down"></i> <span data-i18n="hero.cta_how">Ver cómo funciona</span></a>
         </div>
         <ul class="hero__proof reveal" data-hero="4">
           <li><i class="ph ph-plugs-connected"></i><span data-i18n="hero.proof_obd">Cualquier OBD-II</span></li>
@@ -160,7 +139,8 @@
       </div>
 
       <div class="hero__visual reveal" data-hero="2" aria-hidden="true">
-        <div class="phone">
+        <div class="dash">
+          <div class="dash__bar"><i></i><i></i><i></i><span class="mono">DriveOS · Órdenes</span></div>
           <div class="phone__screen">
             <div class="ps-top"><span data-i18n="hero.phone_top">Órdenes de hoy</span><span class="mono">09:41</span></div>
             <div class="ps-card ps-card--live">
@@ -203,10 +183,10 @@
         <div class="stat reveal" style="--d:80ms"><b class="stat__n" data-count-to="14" data-count-suffix="+ años">14+ años</b><p data-i18n="stats.stat2_text">de antigüedad promedio tiene la flota vehicular en circulación en Lima.</p></div>
         <div class="stat reveal" style="--d:160ms"><b class="stat__n" data-count-to="57.6" data-count-suffix="%">57.6%</b><p data-i18n="stats.stat3_text">de los dueños que probó un software de gestión terminó frustrado por su complejidad.</p></div>
       </div>
-      <p class="stats__src mono" data-i18n="stats.source">Cifras del informe del proyecto Atelier, con datos de AAP 2023 y Fundación Telefónica 2023.</p>
+      <p class="stats__src mono" data-i18n="stats.source">Cifras del informe del proyecto DriveOS, con datos de AAP 2023 y Fundación Telefónica 2023.</p>
     </section>
 
-    <!-- CONTRASTE: gestion tradicional vs Atelier -->
+    <!-- CONTRASTE: gestion tradicional vs DriveOS -->
     <section class="contrast wrap" id="contraste" aria-labelledby="contrastTitle">
       <header class="sec-head reveal">
         <p class="eyebrow"><span class="dot"></span><span data-i18n="contrast.eyebrow">Antes y después</span></p>
@@ -223,7 +203,7 @@
           </ul>
         </article>
         <article class="reveal rounded-3xl border-2 border-primary bg-card-white p-8 shadow-lg shadow-primary/15 dark:bg-card-black" style="--d:100ms">
-          <h3 class="text-2xl font-bold text-text-black dark:text-text-white"><span data-i18n="contrast.new_pre">Con</span> <span class="font-imagotipo text-primary">Atelier</span></h3>
+          <h3 class="text-2xl font-bold text-text-black dark:text-text-white"><span data-i18n="contrast.new_pre">Con</span> <span class="font-imagotipo text-primary">DriveOS</span></h3>
           <ul class="mt-6 flex flex-col gap-4 text-[15px] leading-snug text-text-black dark:text-text-white">
           <li class="flex items-start gap-3"><i class="ph ph-check-circle mt-0.5 text-xl text-success"></i><span data-i18n="contrast.new_1">Orden digital sincronizada en tiempo real, también sin internet en la fosa</span></li>
           <li class="flex items-start gap-3"><i class="ph ph-check-circle mt-0.5 text-xl text-success"></i><span data-i18n="contrast.new_2">Control exacto de repuestos por lote FIFO y margen real por reparación</span></li>
@@ -244,7 +224,7 @@
         <li class="step reveal">
           <span class="step__n mono">01</span>
           <h3 data-i18n="how.step1_title">Escanea</h3>
-          <p data-i18n="how.step1_desc">Conecta cualquier adaptador OBD-II por Bluetooth. Atelier lee los códigos de falla y los sensores en vivo desde el celular del mecánico.</p>
+          <p data-i18n="how.step1_desc">Conecta cualquier adaptador OBD-II por Bluetooth. DriveOS lee los códigos de falla y los sensores en vivo desde el puesto de trabajo del mecánico.</p>
         </li>
         <li class="step reveal" style="--d:100ms">
           <span class="step__n mono">02</span>
@@ -282,7 +262,7 @@
         <article class="tile tile--b reveal" style="--d:70ms">
           <i class="ph ph-wifi-slash tile__ic"></i>
           <h3 data-i18n="prod.tile_b_title">Offline-First</h3>
-          <p data-i18n="prod.tile_b_desc">La fosa no tiene señal, Atelier sí funciona. Guarda todo en el equipo y sincroniza cuando el mecánico sale.</p>
+          <p data-i18n="prod.tile_b_desc">La fosa no tiene señal, DriveOS sí funciona. Guarda todo en el equipo y sincroniza cuando el mecánico sale.</p>
         </article>
         <article class="tile tile--c reveal" style="--d:110ms">
           <i class="ph ph-camera tile__ic"></i>
@@ -326,7 +306,7 @@
           </ul>
         </article>
         <article class="role role--dark reveal" style="--d:100ms">
-          <p class="role__tag mono" data-i18n="roles.r1_tag">APP MÓVIL · EN LA BAHÍA</p>
+          <p class="role__tag mono" data-i18n="roles.r1_tag">VISTA TALLER · EN LA BAHÍA</p>
           <h3 data-i18n="roles.r1_title">Para el mecánico</h3>
           <p class="lead role__desc" data-i18n="roles.r1_desc">Lectura OBD-II vía Bluetooth, captura de fotos y checklist de recepción sin necesidad de conexión permanente.</p>
           <ul>
@@ -446,8 +426,8 @@
     <section class="faq wrap" id="faq">
       <header class="sec-head reveal">
         <p class="eyebrow"><span class="dot"></span><span data-i18n="faq.eyebrow">Preguntas Frecuentes</span></p>
-        <h2 data-i18n="faq.title">Resolvemos tus dudas sobre Atelier.</h2>
-        <p class="lead" data-i18n="faq.lead">Todo lo que necesitas saber antes de implementar Atelier en tu taller mecánico.</p>
+        <h2 data-i18n="faq.title">Resolvemos tus dudas sobre DriveOS.</h2>
+        <p class="lead" data-i18n="faq.lead">Todo lo que necesitas saber antes de implementar DriveOS en tu taller mecánico.</p>
       </header>
       <div class="faq__list">
         <div class="faq__item is-open reveal">
@@ -456,7 +436,7 @@
             <i class="ph ph-plus"></i>
           </button>
           <div class="faq__collapse">
-            <div class="faq__a"><p data-i18n="faq.a1">Atelier es compatible con cualquier adaptador OBD-II Bluetooth estándar (ELM327 versión 1.5 o 2.1), así como escáneres profesionales con conectividad inalámbrica. No requieres hardware propietario costoso.</p></div>
+            <div class="faq__a"><p data-i18n="faq.a1">DriveOS es compatible con cualquier adaptador OBD-II Bluetooth estándar (ELM327 versión 1.5 o 2.1), así como escáneres profesionales con conectividad inalámbrica. No requieres hardware propietario costoso.</p></div>
           </div>
         </div>
         <div class="faq__item reveal" style="--d:70ms">
@@ -465,7 +445,7 @@
             <i class="ph ph-plus"></i>
           </button>
           <div class="faq__collapse">
-            <div class="faq__a"><p data-i18n="faq.a2">La app móvil para mecánicos almacena todas las órdenes, checklist, lecturas OBD-II y fotos en la memoria local del dispositivo. En cuanto el mecánico sale de la fosa y detecta Wi-Fi o datos móviles, la sincronización con el panel web es 100% automática.</p></div>
+            <div class="faq__a"><p data-i18n="faq.a2">DriveOS almacena todas las órdenes, checklist, lecturas OBD-II y fotos en la memoria local del equipo. En cuanto el mecánico sale de la fosa y detecta Wi-Fi o datos móviles, la sincronización con el panel web es 100% automática.</p></div>
           </div>
         </div>
         <div class="faq__item reveal" style="--d:140ms">
@@ -474,7 +454,7 @@
             <i class="ph ph-plus"></i>
           </button>
           <div class="faq__collapse">
-            <div class="faq__a"><p data-i18n="faq.a3">Sí. Atelier genera y envía comprobantes de pago electrónicos (Facturas, Boletas de Venta y Notas de Crédito) cumpliendo con la normativa vigente UBL 2.1 de SUNAT y con código QR oficial.</p></div>
+            <div class="faq__a"><p data-i18n="faq.a3">Sí. DriveOS genera y envía comprobantes de pago electrónicos (Facturas, Boletas de Venta y Notas de Crédito) cumpliendo con la normativa vigente UBL 2.1 de SUNAT y con código QR oficial.</p></div>
           </div>
         </div>
         <div class="faq__item reveal" style="--d:210ms">
@@ -492,7 +472,7 @@
             <i class="ph ph-plus"></i>
           </button>
           <div class="faq__collapse">
-            <div class="faq__a"><p data-i18n="faq.a5">La interfaz móvil está diseñada para mecánicos con cero experiencia tecnológica. La curva de aprendizaje promedio es menor a 2 días y todos los planes incluyen acompañamiento y soporte local en Lima.</p></div>
+            <div class="faq__a"><p data-i18n="faq.a5">La interfaz está diseñada para mecánicos con cero experiencia tecnológica. La curva de aprendizaje promedio es menor a 2 días y todos los planes incluyen acompañamiento y soporte local en Lima.</p></div>
           </div>
         </div>
         <div class="faq__item reveal" style="--d:350ms">
@@ -520,7 +500,7 @@
     <section class="team wrap" id="equipo">
       <header class="sec-head reveal">
         <p class="eyebrow"><span class="dot"></span><span data-i18n="team.eyebrow">El equipo</span></p>
-        <h2 data-i18n="team.title">Quiénes construyen Atelier.</h2>
+        <h2 data-i18n="team.title">Quiénes construyen DriveOS.</h2>
         <p class="lead" data-i18n="team.lead">Ingeniería de Software de la Universidad Peruana de Ciencias Aplicadas (UPC). Desarrollamos cerca de los talleres de Lima.</p>
       </header>
       <ul class="team__row">
@@ -558,13 +538,13 @@
     </section>
 
     <!-- CTA -->
-    <section class="cta" id="instalar">
+    <section class="cta" id="cta">
       <div class="wrap cta__in">
-        <h2 class="reveal" data-i18n="cta.title">Instala Atelier en tu taller.</h2>
-        <p class="reveal" data-i18n="cta.desc">Usa la app móvil en la bahía y el panel web en la oficina. Elige cómo empezar.</p>
+        <h2 class="reveal" data-i18n="cta.title">Lleva DriveOS a tu taller.</h2>
+        <p class="reveal" data-i18n="cta.desc">Gestiona la bahía y la oficina desde un solo sistema web. Elige cómo empezar.</p>
         <div class="cta__actions reveal">
-          <a class="btn btn--light" href="#" id="installMobile" data-install="mobile"><i class="ph ph-device-mobile"></i> <span data-i18n="cta.btn_mobile">Instalar app móvil</span></a>
-          <a class="btn btn--outline-light" href="#" id="installWeb" data-install="web"><i class="ph ph-browser"></i> <span data-i18n="cta.btn_web">Instalar versión web</span></a>
+          <button class="btn btn--light" type="button" data-open-modal="demo" data-plan="pro"><i class="ph ph-calendar-check"></i> <span data-i18n="cta.btn_demo">Pedir Demo</span></button>
+          <a class="btn btn--outline-light" href="#precios"><i class="ph ph-tag"></i> <span data-i18n="cta.btn_plans">Ver planes</span></a>
         </div>
       </div>
     </section>
@@ -572,10 +552,10 @@
 
   <footer class="foot">
     <div class="wrap foot__row">
-      <a class="foot__brand" href="#top" aria-label="Atelier Workshop">
-        <img src="assets/logo-blue-white.png" alt="Atelier Workshop" class="brand-logo">
+      <a class="foot__brand" href="#top" aria-label="DriveOS">
+        <span class="brand-mark"><svg class="brand-mark__ico" viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M12 42a20 20 0 1 1 40 0" stroke="currentColor" stroke-width="6" stroke-linecap="round"/><path d="M32 42l9-14" stroke="#f68b01" stroke-width="6" stroke-linecap="round"/><circle cx="32" cy="42" r="5" fill="currentColor"/></svg><span class="brand-mark__txt">Drive<b>OS</b></span></span>
       </a>
-      <p data-i18n="foot.text">Atelier es un producto de ForkDevs. Proyecto de Ingeniería de Software, Universidad Peruana de Ciencias Aplicadas.</p>
+      <p data-i18n="foot.text">DriveOS es un producto de ForkDevs. Proyecto de Ingeniería de Software, Universidad Peruana de Ciencias Aplicadas.</p>
     </div>
   </footer>
 
@@ -595,7 +575,7 @@
         <div class="modal-head">
           <span class="eyebrow"><span class="dot"></span> <span data-i18n="modal.title">Solicitar Demostración Guiada</span></span>
           <h3 id="modalTitle" data-i18n="modal.title">Solicitar Demostración Guiada</h3>
-          <p class="modal-sub" data-i18n="modal.desc">Déjanos tus datos y un especialista te mostrará Atelier en vivo adaptado a las necesidades de tu taller.</p>
+          <p class="modal-sub" data-i18n="modal.desc">Déjanos tus datos y un especialista te mostrará DriveOS en vivo adaptado a las necesidades de tu taller.</p>
         </div>
         <form class="modal-form" id="demoForm">
           <div class="form-group">
@@ -641,8 +621,7 @@
     </div>
   </div>
 
-  <script src="config.js?v=13"></script>
-  <script src="i18n.js?v=13"></script>
-  <script src="main.js?v=13"></script>
+  <script src="i18n.js?v=14"></script>
+  <script src="main.js?v=14"></script>
 </body>
 </html>

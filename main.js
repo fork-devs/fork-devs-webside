@@ -1,5 +1,5 @@
 /**
- * Atelier Workshop - landing behaviour.
+ * DriveOS - landing behaviour.
  * Sections: helpers, theme, i18n, install links, scroll effects,
  * live telemetry, intro animation, boot.
  */
@@ -41,13 +41,13 @@
 
     function apply(theme) {
       root.setAttribute('data-theme', theme);
-      store('atelier-theme', theme);
+      store('driveos-theme', theme);
       if (toggle) toggle.setAttribute('aria-label', theme === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
     }
 
     // ?theme=light|dark forces a theme (useful for captures and QA)
     var forced = (location.search.match(/[?&]theme=(light|dark)/) || [])[1];
-    apply(forced || store('atelier-theme') || (mq && mq.matches ? 'dark' : 'light'));
+    apply(forced || store('driveos-theme') || (mq && mq.matches ? 'dark' : 'light'));
 
     if (toggle) {
       toggle.addEventListener('click', function () {
@@ -56,7 +56,7 @@
     }
     if (mq) {
       mq.addEventListener('change', function (e) {
-        if (!store('atelier-theme')) apply(e.matches ? 'dark' : 'light');
+        if (!store('driveos-theme')) apply(e.matches ? 'dark' : 'light');
       });
     }
   }
@@ -65,16 +65,16 @@
      i18n (ES / EN) - dictionary lives in i18n.js
      ============================================================ */
   function initI18n() {
-    if (typeof ATELIER_I18N === 'undefined') return;
+    if (typeof DRIVEOS_I18N === 'undefined') return;
     var langToggle = document.getElementById('langToggle');
-    var current = store('atelier-lang') || 'es';
+    var current = store('driveos-lang') || 'es';
 
     function apply(lang) {
       current = lang;
       root.setAttribute('lang', lang);
-      store('atelier-lang', lang);
+      store('driveos-lang', lang);
 
-      var dict = ATELIER_I18N[lang] || ATELIER_I18N.es;
+      var dict = DRIVEOS_I18N[lang] || DRIVEOS_I18N.es;
       document.querySelectorAll('[data-i18n]').forEach(function (el) {
         var text = dict[el.getAttribute('data-i18n')];
         if (text) el.textContent = text;
@@ -94,7 +94,7 @@
   }
 
   /* ============================================================
-     INSTALL LINKS & PWA - URLs come from config.js (ATELIER_CONFIG)
+     INSTALL LINKS & PWA - URLs come from config.js (DRIVEOS_CONFIG)
      ============================================================ */
   var deferredPrompt = null;
   window.addEventListener('beforeinstallprompt', function (e) {
@@ -107,7 +107,7 @@
   });
 
   function initInstallLinks() {
-    var cfg = window.ATELIER_CONFIG || {};
+    var cfg = window.DRIVEOS_CONFIG || {};
     document.querySelectorAll('[data-install]').forEach(function (a) {
       var type = a.getAttribute('data-install');
       var url = cfg[type + 'Url'];
@@ -265,7 +265,7 @@
     var opts = document.querySelectorAll('[data-billing]');
 
     renderPricing = function () {
-      var dict = (typeof ATELIER_I18N !== 'undefined' && (ATELIER_I18N[currentLang()] || ATELIER_I18N.es)) || {};
+      var dict = (typeof DRIVEOS_I18N !== 'undefined' && (DRIVEOS_I18N[currentLang()] || DRIVEOS_I18N.es)) || {};
       document.querySelectorAll('.price-card .val[data-monthly]').forEach(function (el) {
         el.textContent = el.getAttribute(billing === 'annual' ? 'data-annual' : 'data-monthly');
       });
@@ -297,7 +297,7 @@
       btn.addEventListener('click', function (e) {
         e.preventDefault();
         var plan = btn.getAttribute('data-plan');
-        var base = (window.ATELIER_CONFIG || {}).signupUrl;
+        var base = (window.DRIVEOS_CONFIG || {}).signupUrl;
         if (!base) { openModal(plan); return; }
         var url = base + (base.indexOf('?') === -1 ? '?' : '&') +
           'plan=' + encodeURIComponent(plan) + '&billing=' + billing + '&trial=14';
@@ -314,9 +314,9 @@
   function initWhatsApp() {
     var waBtn = document.getElementById('waFloat');
     if (!waBtn) return;
-    var cfg = window.ATELIER_CONFIG || {};
+    var cfg = window.DRIVEOS_CONFIG || {};
     var num = cfg.whatsappNumber || '51999999999';
-    var msg = encodeURIComponent(cfg.whatsappMessage || 'Hola, me interesa conocer más sobre Atelier Workshop para mi taller.');
+    var msg = encodeURIComponent(cfg.whatsappMessage || 'Hola, me interesa conocer más sobre DriveOS para mi taller.');
     waBtn.setAttribute('href', 'https://wa.me/' + num + '?text=' + msg);
   }
 
@@ -628,6 +628,69 @@
     }
   }
 
+
+  /* ============================================================
+     NAV PILL
+     Glass link bar with a sliding indicator: follows hover, rests on the
+     section currently in view (scroll-spy) and glides between links.
+     ============================================================ */
+  function initNavPill() {
+    var bar = document.getElementById('navLinks');
+    var pill = document.getElementById('navPill');
+    if (!bar || !pill) return;
+    var links = Array.prototype.slice.call(bar.querySelectorAll('a[href^="#"]'));
+    var targets = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+    var active = null, first = true;
+
+    function place(a, snap) {
+      if (!a) { pill.classList.remove('is-on'); return; }
+      if (snap) pill.classList.add('is-snap');
+      pill.style.width = a.offsetWidth + 'px';
+      pill.style.transform = 'translateX(' + a.offsetLeft + 'px)';
+      pill.classList.add('is-on');
+      if (snap) { void pill.offsetWidth; pill.classList.remove('is-snap'); }
+    }
+
+    function setActive(a) {
+      if (a === active) return;
+      links.forEach(function (l) { l.classList.toggle('is-active', l === a); });
+      active = a;
+      place(a, first && !!a);
+      if (a) first = false;
+    }
+
+    function spy() {
+      var line = window.innerHeight * 0.38, current = null;
+      targets.forEach(function (t, i) {
+        if (!t) return;
+        var r = t.getBoundingClientRect();
+        if (r.top <= line && r.bottom > line) current = links[i];
+      });
+      setActive(current);
+    }
+
+    var raf = null;
+    window.addEventListener('scroll', function () {
+      if (!raf) raf = requestAnimationFrame(function () { raf = null; spy(); });
+    }, { passive: true });
+
+    links.forEach(function (a) {
+      a.addEventListener('pointerenter', function () { place(a); });
+      a.addEventListener('focus', function () { place(a); });
+      a.addEventListener('click', function () { setActive(a); });
+    });
+    bar.addEventListener('pointerleave', function () { place(active); });
+    bar.addEventListener('focusout', function () { place(active); });
+
+    function refresh() { place(active, true); }
+    window.addEventListener('resize', refresh);
+    window.addEventListener('load', refresh);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(refresh);
+    var lang = document.getElementById('langToggle');
+    if (lang) lang.addEventListener('click', function () { setTimeout(refresh, 60); });
+    spy();
+  }
+
   /* ============================================================
      BOOT
      ============================================================ */
@@ -641,6 +704,7 @@
   initWhatsApp();
   initFAQ();
   initNav();
+  initNavPill();
   initReveal();
   initLiveTelemetry();
   initScrollHex();

@@ -1,8 +1,8 @@
 /**
- * Atelier Workshop - Diccionario y Sistema de Internacionalización (i18n)
+ * DriveOS - Diccionario y Sistema de Internacionalización (i18n)
  * Soporta Español (es) e Inglés (en) de forma instantánea.
  */
-var ATELIER_I18N = {
+var DRIVEOS_I18N = {
   es: {
     // Nav
     'nav.product': 'Producto',
@@ -10,17 +10,16 @@ var ATELIER_I18N = {
     'nav.roles': 'Roles',
     'nav.pricing': 'Precios',
     'nav.team': 'Equipo',
-    'nav.install': 'Instalar app',
 
 
     // Hero
-    'hero.eyebrow': 'Atelier Workshop · talleres mecánicos de Lima',
+    'hero.eyebrow': 'DriveOS · talleres mecánicos de Lima',
     'hero.h1_1': 'El taller que',
     'hero.h1_2': 'se adelanta',
     'hero.h1_3': 'a la avería.',
     'hero.lead': 'Diagnostica con cualquier escáner OBD-II, controla tus repuestos y emite comprobantes SUNAT válidos desde un solo sistema, incluso sin señal en la fosa.',
-    'hero.cta_mobile': 'Instalar app móvil',
-    'hero.cta_web': 'Usar versión web',
+    'hero.cta_demo': 'Pedir Demo',
+    'hero.cta_how': 'Ver cómo funciona',
     'hero.proof_obd': 'Cualquier OBD-II',
     'hero.proof_offline': 'Funciona sin internet',
     'hero.proof_sunat': 'Comprobantes SUNAT válidos',
@@ -40,13 +39,13 @@ var ATELIER_I18N = {
     'stats.stat1_text': 'más caro resulta reparar una avería grave que prevenirla a tiempo.',
     'stats.stat2_text': 'de antigüedad promedio tiene la flota vehicular en circulación en Lima.',
     'stats.stat3_text': 'de los dueños que probó un software de gestión terminó frustrado por su complejidad.',
-    'stats.source': 'Cifras del informe del proyecto Atelier, con datos de AAP 2023 y Fundación Telefónica 2023.',
+    'stats.source': 'Cifras del informe del proyecto DriveOS, con datos de AAP 2023 y Fundación Telefónica 2023.',
     
     // Cómo funciona
     'how.eyebrow': 'Cómo funciona',
     'how.title': 'De la fosa a la factura en tres pasos.',
     'how.step1_title': 'Escanea',
-    'how.step1_desc': 'Conecta cualquier adaptador OBD-II por Bluetooth. Atelier lee los códigos de falla y los sensores en vivo desde el celular del mecánico.',
+    'how.step1_desc': 'Conecta cualquier adaptador OBD-II por Bluetooth. DriveOS lee los códigos de falla y los sensores en vivo desde el puesto de trabajo del mecánico.',
     'how.step2_title': 'Decide con evidencia',
     'how.step2_desc': 'Los hallazgos se vuelven presupuesto con mano de obra y repuestos. El cliente aprueba viendo las fotos de la pieza dañada.',
     'how.step3_title': 'Cobra sin doble trabajo',
@@ -64,7 +63,7 @@ var ATELIER_I18N = {
     'prod.tile_a_desc': 'Códigos de falla y parámetros del motor antes de desarmar nada.',
     'prod.tile_a_example': 'Lectura de ejemplo',
     'prod.tile_b_title': 'Offline-First',
-    'prod.tile_b_desc': 'La fosa no tiene señal, Atelier sí funciona. Guarda todo en el equipo y sincroniza cuando el mecánico sale.',
+    'prod.tile_b_desc': 'La fosa no tiene señal, DriveOS sí funciona. Guarda todo en el equipo y sincroniza cuando el mecánico sale.',
     'prod.tile_c_title': 'Evidencia fotográfica inmutable',
     'prod.tile_c_desc': 'Fotos de recepción y de piezas desmontadas quedan selladas en la orden. Se acabaron los reclamos por daños previos.',
     'prod.tile_d_title': 'Asistencia por geocerca',
@@ -77,7 +76,7 @@ var ATELIER_I18N = {
     // Roles
     'roles.eyebrow': 'Dos interfaces',
     'roles.title': 'Una herramienta para cada rol.',
-    'roles.r1_tag': 'App Móvil · En la bahía',
+    'roles.r1_tag': 'Vista Taller · En la bahía',
     'roles.r1_title': 'Para el mecánico',
     'roles.r1_desc': 'Lectura OBD-II vía Bluetooth, captura de fotos y checklist de recepción sin necesidad de conexión permanente.',
     'roles.r1_f1': 'Diagnóstico OBD-II inalámbrico',
@@ -99,7 +98,7 @@ var ATELIER_I18N = {
 
     // Equipo
     'team.eyebrow': 'El equipo',
-    'team.title': 'Quiénes construyen Atelier.',
+    'team.title': 'Quiénes construyen DriveOS.',
     'team.lead': 'Ingeniería de Software de la Universidad Peruana de Ciencias Aplicadas (UPC). Desarrollamos cerca de los talleres de Lima.',
     'team.m1_role': 'Team Leader y Arquitecto Core Backend',
     'team.m1_desc': 'Arquitectura del sistema, dominio y coordinación técnica.',
@@ -115,22 +114,22 @@ var ATELIER_I18N = {
 
     // FAQ
     'faq.eyebrow': 'Preguntas Frecuentes',
-    'faq.title': 'Resolvemos tus dudas sobre Atelier.',
-    'faq.lead': 'Todo lo que necesitas saber antes de implementar Atelier en tu taller mecánico.',
+    'faq.title': 'Resolvemos tus dudas sobre DriveOS.',
+    'faq.lead': 'Todo lo que necesitas saber antes de implementar DriveOS en tu taller mecánico.',
     'faq.q1': '¿Qué escáneres OBD-II son compatibles con la app?',
-    'faq.a1': 'Atelier es compatible con cualquier adaptador OBD-II Bluetooth estándar (ELM327 versión 1.5 o 2.1), así como escáneres profesionales con conectividad inalámbrica. No requieres hardware propietario costoso.',
+    'faq.a1': 'DriveOS es compatible con cualquier adaptador OBD-II Bluetooth estándar (ELM327 versión 1.5 o 2.1), así como escáneres profesionales con conectividad inalámbrica. No requieres hardware propietario costoso.',
     'faq.q2': '¿Cómo funciona el modo Offline en la fosa o sótanos?',
-    'faq.a2': 'La app móvil para mecánicos almacena todas las órdenes, checklist, lecturas OBD-II y fotos en la memoria local del dispositivo. En cuanto el mecánico sale de la fosa y detecta Wi-Fi o datos móviles, la sincronización con el panel web es 100% automática.',
+    'faq.a2': 'DriveOS almacena todas las órdenes, checklist, lecturas OBD-II y fotos en la memoria local del equipo. En cuanto el mecánico sale de la fosa y detecta Wi-Fi o conexión de datos, la sincronización con el panel web es 100% automática.',
     'faq.q3': '¿La facturación electrónica está homologada con SUNAT?',
-    'faq.a3': 'Sí. Atelier genera y envía comprobantes de pago electrónicos (Facturas, Boletas de Venta y Notas de Crédito) cumpliendo con la normativa vigente UBL 2.1 de SUNAT y con código QR oficial.',
+    'faq.a3': 'Sí. DriveOS genera y envía comprobantes de pago electrónicos (Facturas, Boletas de Venta y Notas de Crédito) cumpliendo con la normativa vigente UBL 2.1 de SUNAT y con código QR oficial.',
     'faq.q4': '¿Cómo nos ayuda el inventario FIFO a evitar pérdidas?',
     'faq.a4': 'El método FIFO (Primero en Entrar, Primero en Salir) asigna automáticamente el costo del lote más antiguo comprado a cada orden de trabajo. Así sabes con exactitud matemática el margen de ganancia real de cada reparación sin fugas de dinero.',
     'faq.q5': '¿Cuánto tiempo toma capacitar a mi equipo de mecánicos?',
-    'faq.a5': 'La interfaz móvil está diseñada para mecánicos con cero experiencia tecnológica. La curva de aprendizaje promedio es menor a 2 días y todos los planes incluyen acompañamiento y soporte local en Lima.',
+    'faq.a5': 'La interfaz está diseñada para mecánicos con cero experiencia tecnológica. La curva de aprendizaje promedio es menor a 2 días y todos los planes incluyen acompañamiento y soporte local en Lima.',
 
     // Modal Demo
     'modal.title': 'Solicitar Demostración Guiada',
-    'modal.desc': 'Déjanos tus datos y un especialista te mostrará Atelier en vivo adaptado a las necesidades de tu taller.',
+    'modal.desc': 'Déjanos tus datos y un especialista te mostrará DriveOS en vivo adaptado a las necesidades de tu taller.',
     'modal.lbl_name': 'Tu nombre y apellido',
     'modal.lbl_workshop': 'Nombre de tu taller mecánico',
     'modal.lbl_phone': 'Teléfono / WhatsApp de contacto',
@@ -145,11 +144,11 @@ var ATELIER_I18N = {
     'wa.tooltip': '¿Tienes dudas? Chatea con un asesor',
 
     // CTA & Footer
-    'cta.title': 'Instala Atelier en tu taller.',
-    'cta.desc': 'Usa la app móvil en la bahía y el panel web en la oficina. Elige cómo empezar.',
-    'cta.btn_mobile': 'Instalar app móvil',
-    'cta.btn_web': 'Instalar versión web',
-    'foot.text': 'Atelier es un producto de ForkDevs. Proyecto de Ingeniería de Software, Universidad Peruana de Ciencias Aplicadas.',
+    'cta.title': 'Lleva DriveOS a tu taller.',
+    'cta.desc': 'Gestiona la bahía y la oficina desde un solo sistema web. Elige cómo empezar.',
+    'cta.btn_demo': 'Pedir Demo',
+    'cta.btn_plans': 'Ver planes',
+    'foot.text': 'DriveOS es un producto de ForkDevs. Proyecto de Ingeniería de Software, Universidad Peruana de Ciencias Aplicadas.',
 
     // Planes, prueba gratis y FAQ ampliado
     'pricing.lead': 'Todos los planes incluyen la plataforma completa y bahías ilimitadas. Prueba 14 días gratis, sin tarjeta.',
@@ -164,10 +163,10 @@ var ATELIER_I18N = {
     'pricing.trial_hint': '14 días gratis. No pedimos tarjeta de crédito.',
     'pricing.trial_btn': 'Probar 14 días gratis',
     'pricing.go_title': 'Plan Go',
-    'pricing.go_desc': 'Para talleres que inician: ecosistema completo con FIFO, app móvil y SUNAT desde el día uno.',
+    'pricing.go_desc': 'Para talleres que inician: ecosistema completo con FIFO, modo offline y SUNAT desde el día uno.',
     'pricing.go_f1': 'Órdenes de trabajo, clientes y personal incluidos',
     'pricing.go_f2': '5 usuarios, 1 sede y bahías ilimitadas',
-    'pricing.go_f3': 'App móvil Android que funciona sin internet en la fosa',
+    'pricing.go_f3': 'Modo offline en la fosa con sincronización automática',
     'pricing.go_f4': 'Inventario FIFO por lote con costo real',
     'pricing.go_f5': 'Hasta 10 fotos de respaldo por orden',
     'pricing.go_f6': 'Facturación SUNAT hasta 100 comprobantes al mes',
@@ -184,7 +183,7 @@ var ATELIER_I18N = {
     'pricing.max_desc': 'Para talleres en crecimiento que captan flotas y entregan reportes periciales con IA.',
     'pricing.max_f1': 'Todo lo incluido en Pro',
     'pricing.max_f2': 'Hasta 25 usuarios y 2 sedes',
-    'pricing.max_f3': 'Listado en Atelier Bussiness para captar empresas con flotas',
+    'pricing.max_f3': 'Listado en el directorio de empresas con flotas',
     'pricing.max_f4': 'Hasta 60 reportes periciales PDF con IA al mes',
     'pricing.max_f5': 'Hasta 15 dispositivos OBD-II y Suite ERP Automotriz',
     'pricing.max_f6': 'Soporte asistido con respuesta en menos de 4 h',
@@ -195,7 +194,7 @@ var ATELIER_I18N = {
     'pricing.enterprise_f2': 'Sedes y usuarios a medida',
     'pricing.enterprise_f3': 'Dispositivos OBD-II e IA elásticos por consumo',
     'pricing.enterprise_f4': 'Conexión con ERP corporativo como SAP u Oracle',
-    'pricing.enterprise_f5': 'Presencia destacada en Atelier Bussiness',
+    'pricing.enterprise_f5': 'Presencia destacada en el directorio de flotas',
     'pricing.enterprise_f6': 'Gerente de cuenta y respuesta en menos de 1 h',
     'pricing.enterprise_btn': 'Contactar a ventas',
     'modal.plan_go': 'Plan Go (S/ 139/mes)',
@@ -204,7 +203,7 @@ var ATELIER_I18N = {
     'modal.plan_enterprise': 'Plan Enterprise (A medida)',
     'faq.q6': '¿Hay penalidad si cancelo el servicio?',
     'faq.a6': 'No. Los planes se renuevan cada 30 días y puedes cancelar o cambiar de nivel en cualquier momento, sin penalidades ni permanencia mínima.',
-    'faq.q7': '¿Puedo llevarme mis datos si dejo de usar Atelier?',
+    'faq.q7': '¿Puedo llevarme mis datos si dejo de usar DriveOS?',
     'faq.a7': 'Sí. Tus clientes, vehículos e inventarios son tuyos y puedes exportarlos completos en formatos estándar cuando quieras.',
 
 
@@ -217,28 +216,27 @@ var ATELIER_I18N = {
     'nav.roles': 'Roles',
     'nav.pricing': 'Pricing',
     'nav.team': 'Team',
-    'nav.install': 'Install app',
     'nav.faq': 'FAQ',
     'nav.demo': 'Request Demo',
 
     // FAQ
     'faq.eyebrow': 'Frequently Asked Questions',
-    'faq.title': 'Answers to your questions about Atelier.',
-    'faq.lead': 'Everything you need to know before implementing Atelier in your auto repair shop.',
+    'faq.title': 'Answers to your questions about DriveOS.',
+    'faq.lead': 'Everything you need to know before implementing DriveOS in your auto repair shop.',
     'faq.q1': 'Which OBD-II scanners are compatible with the app?',
-    'faq.a1': 'Atelier is compatible with any standard Bluetooth OBD-II adapter (ELM327 v1.5 or v2.1) as well as professional wireless scanners. No expensive proprietary hardware is required.',
+    'faq.a1': 'DriveOS is compatible with any standard Bluetooth OBD-II adapter (ELM327 v1.5 or v2.1) as well as professional wireless scanners. No expensive proprietary hardware is required.',
     'faq.q2': 'How does Offline mode work in pits or basements?',
-    'faq.a2': 'The mechanic mobile app stores all work orders, checklists, OBD-II telemetry, and photo evidence in local device storage. As soon as the device detects Wi-Fi or cellular network, it syncs automatically with the web dashboard.',
+    'faq.a2': 'DriveOS stores all work orders, checklists, OBD-II telemetry, and photo evidence in local device storage. As soon as the device detects Wi-Fi or cellular network, it syncs automatically with the web dashboard.',
     'faq.q3': 'Is the electronic invoicing officially compliant with SUNAT?',
-    'faq.a3': 'Yes. Atelier generates and submits electronic invoices (Facturas, Boletas de Venta, Credit Notes) strictly following Peru SUNAT UBL 2.1 regulations with official QR codes.',
+    'faq.a3': 'Yes. DriveOS generates and submits electronic invoices (Facturas, Boletas de Venta, Credit Notes) strictly following Peru SUNAT UBL 2.1 regulations with official QR codes.',
     'faq.q4': 'How does FIFO batch inventory prevent financial leaks?',
     'faq.a4': 'The FIFO (First In, First Out) method automatically links the purchase cost of the oldest batch to each completed work order. This provides true profit margin calculation for every repair.',
     'faq.q5': 'How long does it take to train my workshop technicians?',
-    'faq.a5': 'The mobile interface is designed specifically for shop floor mechanics with zero technical barrier. The average learning curve is under 2 days, and all plans include local onboarding support.',
+    'faq.a5': 'The interface is designed specifically for shop floor mechanics with zero technical barrier. The average learning curve is under 2 days, and all plans include local onboarding support.',
 
     // Modal Demo
     'modal.title': 'Request a Guided Demo',
-    'modal.desc': 'Leave your contact details and a product specialist will walk you through Atelier live, tailored to your shop.',
+    'modal.desc': 'Leave your contact details and a product specialist will walk you through DriveOS live, tailored to your shop.',
     'modal.lbl_name': 'Full name',
     'modal.lbl_workshop': 'Workshop / Garage name',
     'modal.lbl_phone': 'Phone / WhatsApp number',
@@ -253,13 +251,13 @@ var ATELIER_I18N = {
     'wa.tooltip': 'Questions? Chat with an advisor',
 
     // Hero
-    'hero.eyebrow': 'Atelier Workshop · auto repair shops in Lima',
+    'hero.eyebrow': 'DriveOS · auto repair shops in Lima',
     'hero.h1_1': 'The workshop that',
     'hero.h1_2': 'stays ahead of',
     'hero.h1_3': 'the breakdown.',
     'hero.lead': 'Diagnose with any OBD-II scanner, control your spare parts, and issue valid SUNAT invoices from a single system, even without a signal in the pit.',
-    'hero.cta_mobile': 'Install mobile app',
-    'hero.cta_web': 'Use web version',
+    'hero.cta_demo': 'Request Demo',
+    'hero.cta_how': 'See how it works',
     'hero.proof_obd': 'Any OBD-II scanner',
     'hero.proof_offline': 'Works offline',
     'hero.proof_sunat': 'Valid SUNAT invoices',
@@ -279,13 +277,13 @@ var ATELIER_I18N = {
     'stats.stat1_text': 'more expensive to repair a major breakdown than to prevent it on time.',
     'stats.stat2_text': 'average age of vehicles currently in circulation in Lima.',
     'stats.stat3_text': 'of shop owners who tried management software ended up frustrated by its complexity.',
-    'stats.source': 'Data from the Atelier project report, with AAP 2023 and Fundación Telefónica 2023 figures.',
+    'stats.source': 'Data from the DriveOS project report, with AAP 2023 and Fundación Telefónica 2023 figures.',
 
     // How it works
     'how.eyebrow': 'How it works',
     'how.title': 'From the pit to the invoice in three steps.',
     'how.step1_title': 'Scan',
-    'how.step1_desc': 'Connect any OBD-II adapter via Bluetooth. Atelier reads trouble codes and live sensor telemetry right from the mechanic’s phone.',
+    'how.step1_desc': 'Connect any OBD-II adapter via Bluetooth. DriveOS reads trouble codes and live sensor telemetry right from the mechanic’s workstation.',
     'how.step2_title': 'Decide with evidence',
     'how.step2_desc': 'Findings turn into quotes with labor and parts. The customer approves after reviewing photos of the damaged components.',
     'how.step3_title': 'Bill without double work',
@@ -314,7 +312,7 @@ var ATELIER_I18N = {
     'prod.tile_a_desc': 'Trouble codes and engine parameters before disassembling anything.',
     'prod.tile_a_example': 'Sample readout',
     'prod.tile_b_title': 'Offline-First',
-    'prod.tile_b_desc': 'No signal in the pit? Atelier keeps running. Stores everything locally and syncs once the mechanic steps out.',
+    'prod.tile_b_desc': 'No signal in the pit? DriveOS keeps running. Stores everything locally and syncs once the mechanic steps out.',
     'prod.tile_c_title': 'Immutable Photo Evidence',
     'prod.tile_c_desc': 'Intake and disassembled parts photos are sealed into the order. Eliminating false damage claims forever.',
     'prod.tile_d_title': 'Geofenced Attendance',
@@ -327,7 +325,7 @@ var ATELIER_I18N = {
     // Roles
     'roles.eyebrow': 'Two interfaces',
     'roles.title': 'A dedicated tool for every role.',
-    'roles.r1_tag': 'Mobile App · In the bay',
+    'roles.r1_tag': 'Workshop View · In the bay',
     'roles.r1_title': 'For the mechanic',
     'roles.r1_desc': 'Bluetooth OBD-II reading, photo evidence, and intake checklists without requiring a constant network connection.',
     'roles.r1_f1': 'Wireless OBD-II vehicle diagnostics',
@@ -348,7 +346,7 @@ var ATELIER_I18N = {
 
     // Team
     'team.eyebrow': 'The Team',
-    'team.title': 'Who is building Atelier.',
+    'team.title': 'Who is building DriveOS.',
     'team.lead': 'Software Engineering at Universidad Peruana de Ciencias Aplicadas (UPC). Developing alongside Lima mechanics.',
     'team.m1_role': 'Team Leader & Core Backend Architect',
     'team.m1_desc': 'System architecture, domain model and technical coordination.',
@@ -362,11 +360,11 @@ var ATELIER_I18N = {
     'team.m5_desc': 'REST APIs, messaging and OBD-II telemetry.',
 
     // CTA & Footer
-    'cta.title': 'Install Atelier in your workshop.',
-    'cta.desc': 'Use the mobile app in the bay and the web dashboard in the office. Choose how to start.',
-    'cta.btn_mobile': 'Install mobile app',
-    'cta.btn_web': 'Install web version',
-    'foot.text': 'Atelier is a ForkDevs product. Software Engineering Project, Universidad Peruana de Ciencias Aplicadas.',
+    'cta.title': 'Bring DriveOS to your workshop.',
+    'cta.desc': 'Run the bay and the office from a single web system. Choose how to start.',
+    'cta.btn_demo': 'Request Demo',
+    'cta.btn_plans': 'See plans',
+    'foot.text': 'DriveOS is a ForkDevs product. Software Engineering Project, Universidad Peruana de Ciencias Aplicadas.',
 
     // Planes, prueba gratis y FAQ ampliado
     'pricing.lead': 'Every plan includes the full platform and unlimited bays. Try it free for 14 days, no card needed.',
@@ -381,10 +379,10 @@ var ATELIER_I18N = {
     'pricing.trial_hint': '14 days free. No credit card required.',
     'pricing.trial_btn': 'Start 14-day free trial',
     'pricing.go_title': 'Go Plan',
-    'pricing.go_desc': 'For workshops getting started: the full ecosystem with FIFO, mobile app and SUNAT from day one.',
+    'pricing.go_desc': 'For workshops getting started: the full ecosystem with FIFO, offline mode and SUNAT from day one.',
     'pricing.go_f1': 'Work orders, customers and staff included',
     'pricing.go_f2': '5 users, 1 branch and unlimited bays',
-    'pricing.go_f3': 'Android mobile app that works offline in the pit',
+    'pricing.go_f3': 'Offline mode in the pit with automatic sync',
     'pricing.go_f4': 'FIFO batch inventory with true cost',
     'pricing.go_f5': 'Up to 10 evidence photos per order',
     'pricing.go_f6': 'SUNAT invoicing up to 100 documents a month',
@@ -401,7 +399,7 @@ var ATELIER_I18N = {
     'pricing.max_desc': 'For growing workshops that win fleet clients and deliver AI expert reports.',
     'pricing.max_f1': 'Everything included in Pro',
     'pricing.max_f2': 'Up to 25 users and 2 branches',
-    'pricing.max_f3': 'Listing in Atelier Bussiness to win fleet companies',
+    'pricing.max_f3': 'Listing in the fleet-company directory',
     'pricing.max_f4': 'Up to 60 AI expert PDF reports a month',
     'pricing.max_f5': 'Up to 15 OBD-II devices and Automotive ERP Suite',
     'pricing.max_f6': 'Assisted support with under 4 h response',
@@ -412,7 +410,7 @@ var ATELIER_I18N = {
     'pricing.enterprise_f2': 'Custom branches and users',
     'pricing.enterprise_f3': 'Elastic OBD-II devices and AI by usage',
     'pricing.enterprise_f4': 'Corporate ERP connection such as SAP or Oracle',
-    'pricing.enterprise_f5': 'Featured presence in Atelier Bussiness',
+    'pricing.enterprise_f5': 'Featured presence in the fleet-company directory',
     'pricing.enterprise_f6': 'Account manager and under 1 h response',
     'pricing.enterprise_btn': 'Contact sales',
     'modal.plan_go': 'Go Plan (S/ 139/mo)',
@@ -421,7 +419,7 @@ var ATELIER_I18N = {
     'modal.plan_enterprise': 'Enterprise Plan (Custom)',
     'faq.q6': 'Is there a penalty if I cancel the service?',
     'faq.a6': 'No. Plans renew every 30 days and you can cancel or change tier at any time, with no penalties or minimum term.',
-    'faq.q7': 'Can I take my data with me if I stop using Atelier?',
+    'faq.q7': 'Can I take my data with me if I stop using DriveOS?',
     'faq.a7': 'Yes. Your customers, vehicles and inventory belong to you and can be fully exported in standard formats at any time.',
   }
 };

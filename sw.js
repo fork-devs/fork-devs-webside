@@ -1,8 +1,8 @@
 /**
- * Atelier Workshop - Service Worker (offline cache).
+ * DriveOS - Service Worker (offline cache).
  * Network first: always serves the latest deploy and falls back to cache offline.
  */
-const CACHE_NAME = 'atelier-cache-v3';
+const CACHE_NAME = 'driveos-cache-v1';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -14,12 +14,9 @@ const ASSETS_TO_CACHE = [
   './assets/vendor/phosphor/Phosphor.woff2',
   './assets/fonts/satoshi/Satoshi-Variable.woff2',
   './assets/fonts/albert-sans/AlbertSans-ExtraBold.ttf',
-  './assets/logo-blue-black.png',
-  './assets/logo-blue-white.png',
-  './assets/logo-mark-blue.png',
-  './assets/logo-mark-mask.png',
-  './assets/hex.png',
-  './assets/word.png'
+  './assets/brand/driveos-icon.svg',
+  './assets/brand/driveos-hex.svg',
+  './assets/brand/driveos-mark.svg'
 ];
 
 self.addEventListener('install', (event) => {
