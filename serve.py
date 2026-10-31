@@ -1,12 +1,17 @@
-import http.server, socketserver, sys
+import http.server, socketserver, sys, os
 
+web_dir = os.path.dirname(os.path.abspath(__file__))
+os.chdir(web_dir)
 PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 8100
 
-class H(http.server.SimpleHTTPRequestHandler):
+class NoCacheHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
-        self.send_header('Cache-Control', 'no-store')
+        self.send_header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
+        self.send_header('Pragma', 'no-cache')
+        self.send_header('Expires', '0')
         super().end_headers()
 
 socketserver.ThreadingTCPServer.allow_reuse_address = True
-socketserver.ThreadingTCPServer.daemon_threads = True
-socketserver.ThreadingTCPServer(('', PORT), H).serve_forever()
+with socketserver.ThreadingTCPServer(('', PORT), NoCacheHTTPRequestHandler) as httpd:
+    print(f'Serving on port {PORT}')
+    httpd.serve_forever()
