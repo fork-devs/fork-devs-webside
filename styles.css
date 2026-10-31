@@ -340,3 +340,55 @@
   background: #0071eb url('assets/brand/pattern-blue.png') repeat center !important;
   background-size: 120px !important;
 }
+
+
+/* ========================================================
+   DRIVEOS OFFICIAL BRAND MARK (IMAGE 1 & 2 PIXEL PERFECT)
+   ======================================================== */
+.brand-mark {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+}
+
+.brand-svg-mark {
+  height: 38px !important;
+  width: auto !important;
+  aspect-ratio: 1096 / 1332 !important;
+  display: block !important;
+  flex: none !important;
+  overflow: visible !important;
+  filter: drop-shadow(0 2px 8px rgba(0, 113, 235, 0.25));
+}
+
+.brand-part.hat-part,
+.brand-part.body-part {
+  fill: #0071eb !important;
+}
+
+.brand-part.eye-part {
+  fill: #ffffff !important;
+}
+
+.nav-hat-group {
+  transform-origin: 548px 274px !important;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav__brand:hover .nav-hat-group,
+.foot__brand:hover .nav-hat-group,
+.brand-mark:hover .nav-hat-group {
+  animation: hatTossAndSpin 1.35s cubic-bezier(0.22, 1, 0.36, 1) both !important;
+}
+
+.brand-mark__title {
+  font-family: var(--font-imagotipo), "Albert Sans", "Satoshi", sans-serif !important;
+  font-weight: 850 !important;
+  font-size: 1.55rem !important;
+  letter-spacing: -0.03em !important;
+  color: #ffffff !important;
+  line-height: 1 !important;
+  margin: 0 !important;
+}
