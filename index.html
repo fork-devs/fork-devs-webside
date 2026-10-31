@@ -57,11 +57,91 @@
   <link rel="stylesheet" href="styles.css?v=16">
 </head>
 <body>
+  <!-- ========================================================
+       DRIVEOS SPEEDOMETER SPLASH SCREEN (PANTALLA DE IGNICION)
+       ======================================================== -->
+  <div class="splash-screen" id="splashScreen">
+    <div class="splash-bg-glow"></div>
+
+    <div class="splash-content">
+      <!-- USER'S EXACT SPEEDOMETER GAUGE -->
+      <div class="speedometer-gauge">
+        <img class="gauge-dial" src="assets/brand/logo-dial-white.png" alt="Speedometer Dial">
+        <img class="gauge-needle" src="assets/brand/logo-needle-orange.png" alt="Speedometer Needle">
+      </div>
+
+      <div class="telemetry-readout">
+        <div class="splash-brand">Drive<b>OS</b></div>
+        <div class="speed-counter">
+          <span class="speed-value" id="speedCounter">0</span>
+          <span class="speed-unit">km/h</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="splash-skip-hint" id="skipHint">Click o presiona [Esc] para omitir</div>
+  </div>
+
+  <script>
+    (function () {
+      var splash = document.getElementById('splashScreen');
+      var counter = document.getElementById('speedCounter');
+      var skipHint = document.getElementById('skipHint');
+
+      var closed = false;
+      function closeSplash() {
+        if (closed) return;
+        closed = true;
+        if (splash) splash.classList.add('is-hidden');
+      }
+
+      var startTime = null;
+      var duration = 2500;
+
+      function animateCounter(timestamp) {
+        if (!startTime) startTime = timestamp;
+        var progress = (timestamp - startTime) / duration;
+
+        if (progress < 0.15) {
+          if (counter) counter.textContent = '0';
+        } else if (progress < 0.48) {
+          var p = (progress - 0.15) / 0.33;
+          var cur = Math.floor(p * 240);
+          if (counter) counter.textContent = Math.min(240, Math.max(0, cur));
+        } else if (progress < 0.78) {
+          var p = (progress - 0.48) / 0.30;
+          var cur = Math.floor(240 - p * 30);
+          if (counter) counter.textContent = cur;
+        } else if (progress < 0.95) {
+          var p = (progress - 0.78) / 0.17;
+          var cur = Math.floor(210 - p * 165);
+          if (counter) counter.textContent = Math.max(45, cur);
+        } else {
+          if (counter) counter.textContent = '45';
+        }
+
+        if (progress < 1 && !closed) {
+          requestAnimationFrame(animateCounter);
+        } else {
+          setTimeout(closeSplash, 350);
+        }
+      }
+
+      requestAnimationFrame(animateCounter);
+
+      if (skipHint) skipHint.addEventListener('click', closeSplash);
+      if (splash) splash.addEventListener('click', closeSplash);
+      window.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter') closeSplash();
+      }, { once: true });
+    })();
+  </script>
+
 
   <header class="nav" id="nav">
     <div class="wrap nav__row">
       <a class="nav__brand" href="#top" aria-label="DriveOS">
-        <span class="brand-mark"><svg class="brand-mark__ico" viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M12 42a20 20 0 1 1 40 0" stroke="currentColor" stroke-width="6" stroke-linecap="round"/><path d="M32 42l9-14" stroke="#f68b01" stroke-width="6" stroke-linecap="round"/><circle cx="32" cy="42" r="5" fill="currentColor"/></svg><span class="brand-mark__txt">Drive<b>OS</b></span></span>
+        <span class="brand-mark"><img class="brand-mark__ico" src="assets/brand/nav-logo-brand.png" alt="DriveOS Logo"><span class="brand-mark__txt">Drive<b>OS</b></span></span>
       </a>
       <nav class="nav__links" id="navLinks" aria-label="Principal">
         <span class="nav__pill" id="navPill" aria-hidden="true"></span>
@@ -553,7 +633,7 @@
   <footer class="foot">
     <div class="wrap foot__row">
       <a class="foot__brand" href="#top" aria-label="DriveOS">
-        <span class="brand-mark"><svg class="brand-mark__ico" viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M12 42a20 20 0 1 1 40 0" stroke="currentColor" stroke-width="6" stroke-linecap="round"/><path d="M32 42l9-14" stroke="#f68b01" stroke-width="6" stroke-linecap="round"/><circle cx="32" cy="42" r="5" fill="currentColor"/></svg><span class="brand-mark__txt">Drive<b>OS</b></span></span>
+        <span class="brand-mark"><img class="brand-mark__ico" src="assets/brand/nav-logo-brand.png" alt="DriveOS Logo"><span class="brand-mark__txt">Drive<b>OS</b></span></span>
       </a>
       <p data-i18n="foot.text">DriveOS es un producto de ForkDevs. Proyecto de Ingeniería de Software, Universidad Peruana de Ciencias Aplicadas.</p>
     </div>

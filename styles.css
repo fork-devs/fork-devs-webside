@@ -6,7 +6,7 @@
 
 /* ---- DriveOS wordmark ---- */
 .brand-mark{display:inline-flex;align-items:center;gap:9px;color:var(--ink);line-height:1}
-.brand-mark__ico{width:30px;height:30px;flex:none;color:var(--blue)}
+.brand-mark__ico{width:30px;height:30px;flex:none;object-fit:contain}[data-theme="dark"] .brand-mark__ico{content:url("assets/brand/nav-logo-dark.png")}
 .brand-mark__txt{font:800 23px/1 var(--font);letter-spacing:-.045em}
 .brand-mark__txt b{color:var(--blue);font-weight:800}
 .foot .brand-mark{color:#fff}
@@ -54,3 +54,137 @@
 .hero__visual .float--a{left:-46px;top:auto;bottom:-22px;right:auto}
 .hero__visual .float--b{right:-18px;top:auto;bottom:-44px;left:auto}
 @media (max-width:900px){.hero__visual .float--a{left:-8px}.hero__visual .float--b{right:-8px}}
+
+
+/* ========================================================
+   DRIVEOS SPEEDOMETER SPLASH SCREEN (USER'S EXACT LOGO)
+   ======================================================== */
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-surface-black, #0B1220);
+  background-image: 
+    radial-gradient(circle 550px at 50% 45%, rgba(0, 113, 235, 0.28) 0%, rgba(3, 26, 107, 0.45) 50%, transparent 75%),
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(105, 177, 255, 0.12), transparent);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.7s;
+  user-select: none;
+}
+.splash-screen.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.04);
+  pointer-events: none;
+}
+.splash-bg-glow {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(0, 113, 235, 0.32) 0%, rgba(105, 177, 255, 0.08) 50%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+  animation: splash-pulse-glow 3s ease-in-out infinite alternate;
+}
+@keyframes splash-pulse-glow {
+  0% { transform: scale(0.92); opacity: 0.7; }
+  100% { transform: scale(1.15); opacity: 1; }
+}
+.splash-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 2;
+}
+.speedometer-gauge {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.7));
+}
+.gauge-dial {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 16px rgba(0, 113, 235, 0.45));
+}
+.gauge-needle {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform-origin: 44.77% 74.79%;
+  animation: splash-needle-sweep 2.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  filter: drop-shadow(0 0 10px rgba(246, 139, 1, 0.8))
+          drop-shadow(0 0 24px rgba(246, 139, 1, 0.4));
+}
+@keyframes splash-needle-sweep {
+  0% { transform: rotate(-115deg); }
+  15% { transform: rotate(-115deg); }
+  48% { transform: rotate(82deg); }
+  62% { transform: rotate(74deg); }
+  78% { transform: rotate(80deg); }
+  92% { transform: rotate(15deg); }
+  100% { transform: rotate(15deg); }
+}
+.splash-brand {
+  font-size: 2.35rem;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  color: #FFFFFF;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+.splash-brand b {
+  color: #F68B01;
+  font-weight: 800;
+}
+.speed-counter {
+  font-family: var(--font, system-ui, sans-serif);
+  font-variant-numeric: tabular-nums;
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  margin-top: 0.2rem;
+}
+.speed-value {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #69B1FF;
+  min-width: 3ch;
+  text-align: right;
+}
+.speed-unit {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #C6C6C6;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.splash-skip-hint {
+  position: absolute;
+  bottom: 2rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #C6C6C6;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.splash-skip-hint:hover { color: #69B1FF; }
