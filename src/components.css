@@ -579,3 +579,7 @@ html:not(.js) .reveal { opacity: 1; transform: none; }
 .is-shot .h1-line > span, .is-shot .h1-line > em { opacity: 1; transform: none; transition: none; }
 .is-shot .tele-trace__group { animation: none; }
 .is-shot .hero { min-height: 820px; }
+
+/* Team members without a photo: initials placeholder */
+.member__ph--ini{display:grid;place-items:center;background:linear-gradient(145deg,#0071eb33,#031a6b66)}
+.member__ph--ini span{font-size:56px;font-weight:800;letter-spacing:-.04em;color:#69b1ff}

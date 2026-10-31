@@ -1,9 +1,14 @@
-# Atelier Workshop - Website
+# DriveOS / Atelier Workshop - Website
 
-Landing page of Atelier Workshop, the workshop-management system for auto repair shops in Lima.
+Landing page for the workshop-management system for auto repair shops in Lima.
+Static site (HTML, CSS, vanilla JS) with ES/EN i18n, dark/light theme, offline PWA shell.
 
-The project is delivered in three parts, one per team member, and merged through `develop`:
+Replicated from the Atelier website and adapted with the ForkDevs team (UPC, SI657).
 
-1. Foundation, hero, context, before/after and how it works.
-2. Product, roles and team.
-3. Pricing, FAQ, demo modal, installation and PWA.
+## Run
+
+```
+python serve.py        # http://localhost:8100
+```
+
+CSS source is Tailwind v4 (`src/global.css` -> `styles.css`), rebuilt with `pnpm build:css`.
