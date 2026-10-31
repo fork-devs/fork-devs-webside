@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DriveOS - Splash Screen Demo</title>
+  <link rel="preload" href="assets/fonts/satoshi/Satoshi-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face {
+      font-family: 'Satoshi';
+      font-style: normal;
+      font-weight: 300 900;
+      font-display: swap;
+      src: url('assets/fonts/satoshi/Satoshi-Variable.woff2') format('woff2-variations'),
+           url('assets/fonts/satoshi/Satoshi-Variable.woff2') format('woff2');
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* DriveOS Design Tokens */
+    :root {
+      --color-primary: #0071EB;
+      --color-primary-dark: #031A6B;
+      --color-primary-soft: #69B1FF;
+      --color-accent: #F68B01;
+      --color-surface-black: #0B1220;
+      --color-card-black: #111A2E;
+      --color-text-white: #FFFFFF;
+      --color-text-subtitles: #C6C6C6;
+      --color-surface-white: #F8F8FA;
+      --color-text-black: #262626;
+      --font-sans: 'Satoshi', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    /* Theme: Dark (matching Hero) */
+    [data-theme="dark"] body {
+      background-color: var(--color-surface-black);
+      color: var(--color-text-white);
+      background-image: 
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0, 113, 235, 0.22), transparent),
+        radial-gradient(circle 600px at 92% 25%, rgba(0, 113, 235, 0.15), transparent),
+        radial-gradient(circle 500px at 8% 65%, rgba(105, 177, 255, 0.08), transparent);
+    }
+
+    /* Theme: Light */
+    [data-theme="light"] body {
+      background-color: var(--color-surface-white);
+      color: var(--color-text-black);
+      background-image: 
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0, 113, 235, 0.12), transparent),
+        radial-gradient(circle 600px at 92% 25%, rgba(0, 113, 235, 0.08), transparent);
+    }
+
+    body {
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* ========================================================
+       DRIVEOS SPEEDOMETER SPLASH SCREEN (USER'S EXACT LOGO)
+       ======================================================== */
+    .splash-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0.7s;
+      user-select: none;
+    }
+
+    [data-theme="dark"] .splash-screen {
+      background-color: var(--color-surface-black);
+      background-image: 
+        radial-gradient(circle 550px at 50% 45%, rgba(0, 113, 235, 0.28) 0%, rgba(3, 26, 107, 0.45) 50%, transparent 75%),
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(105, 177, 255, 0.12), transparent);
+    }
+
+    [data-theme="light"] .splash-screen {
+      background-color: var(--color-surface-white);
+      background-image: 
+        radial-gradient(circle 550px at 50% 45%, rgba(0, 113, 235, 0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(105, 177, 255, 0.08), transparent);
+    }
+
+    .splash-screen.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.04);
+      pointer-events: none;
+    }
+
+    /* Atmospheric hero glow */
+    .splash-bg-glow {
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      pointer-events: none;
+      filter: blur(50px);
+      animation: hero-glow-pulse 3s ease-in-out infinite alternate;
+    }
+
+    [data-theme="dark"] .splash-bg-glow {
+      background: radial-gradient(circle, rgba(0, 113, 235, 0.32) 0%, rgba(105, 177, 255, 0.08) 50%, transparent 70%);
+    }
+
+    [data-theme="light"] .splash-bg-glow {
+      background: radial-gradient(circle, rgba(0, 113, 235, 0.15) 0%, transparent 65%);
+    }
+
+    @keyframes hero-glow-pulse {
+      0% { transform: scale(0.92); opacity: 0.7; }
+      100% { transform: scale(1.15); opacity: 1; }
+    }
+
+    /* Container for the Speedometer Logo */
+    .splash-content {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      z-index: 2;
+    }
+
+    /* Speedometer Gauge using the user's exact segmented logo image */
+    .speedometer-gauge {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.7));
+    }
+
+    /* Dial layer (The segmented arc from the user's logo) */
+    .gauge-dial {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    [data-theme="dark"] .gauge-dial {
+      filter: drop-shadow(0 0 16px rgba(0, 113, 235, 0.45));
+    }
+
+    [data-theme="light"] .gauge-dial {
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
+    }
+
+    /* Needle layer (The exact needle from the user's logo with rotation) */
+    .gauge-needle {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform-origin: 44.77% 74.79%;
+      animation: needle-sweep 2.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      filter: drop-shadow(0 0 10px rgba(246, 139, 1, 0.8))
+              drop-shadow(0 0 24px rgba(246, 139, 1, 0.4));
+    }
+
+    @keyframes needle-sweep {
+      0% {
+        transform: rotate(-115deg);
+      }
+      15% {
+        transform: rotate(-115deg);
+      }
+      48% {
+        transform: rotate(82deg);
+      }
+      62% {
+        transform: rotate(74deg);
+      }
+      78% {
+        transform: rotate(80deg);
+      }
+      92% {
+        transform: rotate(15deg);
+      }
+      100% {
+        transform: rotate(15deg);
+      }
+    }
+
+    /* Brand and Speed Readout */
+    .telemetry-readout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .brand-title {
+      font-size: 2.35rem;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    [data-theme="dark"] .brand-title {
+      color: #FFFFFF;
+    }
+
+    [data-theme="light"] .brand-title {
+      color: var(--color-text-black);
+    }
+
+    .brand-title b {
+      color: var(--color-accent);
+      font-weight: 800;
+    }
+
+    .speed-counter {
+      font-family: var(--font-sans);
+      font-variant-numeric: tabular-nums;
+      font-size: 1.25rem;
+      font-weight: 700;
+      display: flex;
+      align-items: baseline;
+      gap: 0.35rem;
+      margin-top: 0.2rem;
+    }
+
+    .speed-value {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--color-primary-soft);
+      min-width: 3ch;
+      text-align: right;
+    }
+
+    [data-theme="light"] .speed-value {
+      color: var(--color-primary);
+    }
+
+    .speed-unit {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--color-text-subtitles);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Skip hint */
+    .skip-hint {
+      position: absolute;
+      bottom: 2rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--color-text-subtitles);
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .skip-hint:hover {
+      color: var(--color-primary-soft);
+    }
+
+    /* Theme switcher button (top right) */
+    .theme-switch-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      padding: 0.45rem 0.95rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      z-index: 100000;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: inherit;
+      backdrop-filter: blur(10px);
+      transition: all 0.2s ease;
+    }
+
+    .theme-switch-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* ========================================================
+       HERO PAGE (BEHIND SPLASH SCREEN)
+       ======================================================== */
+    .main-site {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Glass Navbar */
+    .glass-nav {
+      position: sticky;
+      top: 1rem;
+      margin-inline: auto;
+      max-width: 1100px;
+      width: calc(100% - 2rem);
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 9999px;
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+
+    [data-theme="dark"] .glass-nav {
+      background: rgba(11, 18, 32, 0.82);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid rgba(105, 177, 255, 0.25);
+      box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.6);
+    }
+
+    [data-theme="light"] .glass-nav {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .nav-brand-ico {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+    }
+
+    .nav-brand {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: inherit;
+      text-decoration: none;
+      letter-spacing: -0.03em;
+    }
+
+    .nav-brand b {
+      color: var(--color-accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+    }
+
+    .nav-links a {
+      color: var(--color-text-subtitles);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-primary-soft);
+    }
+
+    .nav-btn {
+      padding: 0.55rem 1.25rem;
+      background: var(--color-primary);
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 0.85rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 14px rgba(0, 113, 235, 0.35);
+    }
+
+    .nav-btn:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(0, 113, 235, 0.6);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 1.5rem;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: rgba(0, 113, 235, 0.12);
+      border: 1px solid rgba(105, 177, 255, 0.28);
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-primary-soft);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    [data-theme="light"] .hero-pill {
+      color: var(--color-primary);
+      background: rgba(0, 113, 235, 0.08);
+      border-color: rgba(0, 113, 235, 0.2);
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 4.25rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--color-primary-soft);
+    }
+
+    [data-theme="light"] .hero-title em {
+      color: var(--color-primary);
+    }
+
+    .hero-desc {
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: var(--color-text-subtitles);
+      max-width: 700px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      padding: 0.85rem 1.75rem;
+      background: var(--color-primary);
+      color: #FFFFFF;
+      font-weight: 700;
+      border-radius: 12px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0, 113, 235, 0.4);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(0, 113, 235, 0.6);
+    }
+
+    .btn-ghost {
+      padding: 0.85rem 1.75rem;
+      background: rgba(255, 255, 255, 0.04);
+      color: inherit;
+      font-weight: 600;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    [data-theme="light"] .btn-ghost {
+      background: #FFFFFF;
+      border-color: #E2E8F0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--color-primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Theme toggle button for instant QA -->
+  <button class="theme-switch-btn" id="themeSwitchBtn" onclick="toggleTheme()">🌓 Alternar Tema</button>
+
+  <!-- ========================================================
+       1. SPLASH SCREEN (USER'S EXACT SPEEDOMETER LOGO SWEEP)
+       ======================================================== -->
+  <div class="splash-screen" id="splashScreen">
+    <div class="splash-bg-glow"></div>
+
+    <div class="splash-content">
+      <!-- USER'S EXACT SPEEDOMETER GAUGE -->
+      <div class="speedometer-gauge">
+        <img class="gauge-dial" id="gaugeDialImg" src="assets/brand/logo-dial-white.png" alt="Speedometer Dial">
+        <img class="gauge-needle" id="gaugeNeedleImg" src="assets/brand/logo-needle-orange.png" alt="Speedometer Needle">
+      </div>
+
+      <div class="telemetry-readout">
+        <div class="brand-title">Drive<b>OS</b></div>
+        <div class="speed-counter">
+          <span class="speed-value" id="speedCounter">0</span>
+          <span class="speed-unit">km/h</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="skip-hint" id="skipHint">Click o presiona cualquier tecla para omitir [Esc]</div>
+  </div>
+
+  <!-- ========================================================
+       2. PÁGINA PRINCIPAL / HERO SECTION
+       ======================================================== -->
+  <div class="main-site">
+    <!-- Floating Glass Navbar -->
+    <header class="glass-nav">
+      <a href="#" class="nav-brand"><img class="nav-brand-ico" id="navLogoImg" src="assets/brand/nav-logo-dark.png" alt="DriveOS Logo"><span>Drive<b>OS</b></span></a>
+      <nav class="nav-links">
+        <a href="#producto">Producto</a>
+        <a href="#como">Cómo funciona</a>
+        <a href="#roles">Roles</a>
+        <a href="#precios">Precios</a>
+        <a href="#equipo">Equipo</a>
+      </nav>
+      <a href="#demo" class="nav-btn">Pedir Demo</a>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="hero-section">
+      <div class="hero-pill">⚡ DriveOS • Talleres mecánicos de Lima</div>
+      <h1 class="hero-title">El taller que <em>se adelanta</em> a la avería.</h1>
+      <p class="hero-desc">
+        Diagnostica con cualquier escáner OBD-II, controla tus repuestos y emite comprobantes SUNAT válidos desde un solo sistema, incluso sin señal en la fosa.
+      </p>
+      <div class="hero-cta">
+        <a href="#demo" class="btn-primary">Pedir Demo en Vivo</a>
+        <a href="#producto" class="btn-ghost">Ver Funcionalidades</a>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+
+      const dial = document.getElementById('gaugeDialImg');
+      if (dial) {
+        dial.src = next === 'dark' ? 'assets/brand/logo-dial-white.png' : 'assets/brand/logo-dial-black.png';
+      }
+      const navLogo = document.getElementById('navLogoImg');
+      if (navLogo) {
+        navLogo.src = next === 'dark' ? 'assets/brand/nav-logo-dark.png' : 'assets/brand/nav-logo-brand.png';
+      }
+    }
+
+    (function () {
+      const splash = document.getElementById('splashScreen');
+      const counter = document.getElementById('speedCounter');
+      const skipHint = document.getElementById('skipHint');
+
+      let closed = false;
+      function closeSplash() {
+        if (closed) return;
+        closed = true;
+        splash.classList.add('is-hidden');
+      }
+
+      let startTime = null;
+      const animDuration = 2500;
+
+      function animateCounter(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const progress = (timestamp - startTime) / animDuration;
+
+        if (progress < 0.15) {
+          counter.textContent = '0';
+        } else if (progress < 0.48) {
+          const p = (progress - 0.15) / 0.33;
+          const currentSpeed = Math.floor(p * 240);
+          counter.textContent = String(Math.min(240, Math.max(0, currentSpeed)));
+        } else if (progress < 0.78) {
+          const p = (progress - 0.48) / 0.30;
+          const currentSpeed = Math.floor(240 - p * 30);
+          counter.textContent = String(currentSpeed);
+        } else if (progress < 0.95) {
+          const p = (progress - 0.78) / 0.17;
+          const currentSpeed = Math.floor(210 - p * 165);
+          counter.textContent = String(Math.max(45, currentSpeed));
+        } else {
+          counter.textContent = '45';
+        }
+
+        if (progress < 1 && !closed) {
+          requestAnimationFrame(animateCounter);
+        } else {
+          setTimeout(closeSplash, 350);
+        }
+      }
+
+      requestAnimationFrame(animateCounter);
+
+      if (skipHint) skipHint.addEventListener('click', closeSplash);
+      splash.addEventListener('click', closeSplash);
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter') closeSplash();
+      }, { once: true });
+    })();
+  </script>
+</body>
+</html>
