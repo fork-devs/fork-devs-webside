@@ -1,5 +1,7 @@
 node_modules/
-dist/
-.angular/
-.vercel/
-*.log
+.agents/
+skills-lock.json
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
