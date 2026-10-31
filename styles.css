@@ -297,3 +297,46 @@
 [data-theme="dark"] .brand-mark__tag {
   color: #38bdf8;
 }
+
+
+/* Definite Image 1 brand mark match */
+.brand-mark {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+}
+
+.brand-svg-mark {
+  height: 38px !important;
+  width: auto !important;
+  aspect-ratio: 1096 / 1332 !important;
+  display: block !important;
+  flex: none !important;
+  overflow: visible !important;
+}
+
+.brand-part {
+  fill: #0071eb !important;
+}
+
+.brand-mark__title {
+  font-family: var(--font-imagotipo), "Albert Sans", "Satoshi", sans-serif !important;
+  font-weight: 850 !important;
+  font-size: 1.55rem !important;
+  letter-spacing: -0.03em !important;
+  color: #ffffff !important;
+}
+
+/* Splash loader Image 2 exact match */
+.loader-overlay {
+  background: #090d16 !important;
+}
+.curtain-dark {
+  background: #090d16 !important;
+}
+.curtain-blue {
+  background: #0071eb url('assets/brand/pattern-blue.png') repeat center !important;
+  background-size: 120px !important;
+}
